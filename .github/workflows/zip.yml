@@ -1,0 +1,21 @@
+name: Zip Files
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  zip-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create zip file
+        run: zip -r project.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-zip
+          path: project.zip
